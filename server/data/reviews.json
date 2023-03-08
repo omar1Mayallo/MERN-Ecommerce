@@ -1,0 +1,38 @@
+[
+  {
+    "reviewText": "That is very good",
+    "reviewRating": 4.5,
+    "user": "63df618eaa24dd7529ad834c",
+    "product": "63df618daa24dd7529ad8337"
+  },
+  {
+    "reviewText": "Nice Product",
+    "reviewRating": 3,
+    "user": "63df618eaa24dd7529ad834e",
+    "product": "63df618daa24dd7529ad8337"
+  },
+  {
+    "reviewText": "It's very bad",
+    "reviewRating": 1,
+    "user": "63df618eaa24dd7529ad834f",
+    "product": "63df618daa24dd7529ad8337"
+  },
+  {
+    "reviewText": "Bad product, So hard to clean it",
+    "reviewRating": 1,
+    "user": "63df618eaa24dd7529ad8350",
+    "product": "63df618daa24dd7529ad8338"
+  },
+  {
+    "reviewText": "I recommended it, it is very nice",
+    "reviewRating": 3.5,
+    "user": "63df618eaa24dd7529ad8351",
+    "product": "63df618daa24dd7529ad8338"
+  },
+  {
+    "reviewText": "Nice style, simple and suitable for exercises",
+    "reviewRating": 4.2,
+    "user": "63df618eaa24dd7529ad8352",
+    "product": "63df618daa24dd7529ad8338"
+  }
+]

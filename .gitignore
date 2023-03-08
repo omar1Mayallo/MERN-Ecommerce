@@ -1,0 +1,15 @@
+# dependencies
+/node_modules
+/client/node_modules
+/server/uploads
+
+# production
+/client/build
+
+# misc
+.env
+logic.txt
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

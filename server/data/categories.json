@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "63292e769de7cef23355a195",
+    "name": "shoes",
+    "description": "Muroexe shoe collection: comfortable, technical and elegant, at the best price. Unisex ecological footwear with a huge variety of models available. 100% cruelty free.",
+    "image": "c-Shoes.jpg"
+  },
+  {
+    "_id": "63292e769de7cef23355a194",
+    "name": "sneakers",
+    "description": "Discover the Muroexe sneakers collection on our website. Vegan sneakers at the best price and with a wide range of models available. Maximum comfort and flexibility.",
+    "image": "c-Sneakers.jpg"
+  },
+  {
+    "_id": "63292e769de7cef23355a196",
+    "name": "slippers",
+    "description": "Enjoy the comfort of Muroexe slippers. Ecological slippers for women and men with great comfort and flexibility.",
+    "image": "c-Slippers.jpg"
+  },
+  {
+    "_id": "63292e769de7cef23355a197",
+    "name": "accessories",
+    "description": "Discover the Muroexe accessories collection on our website. Accessories, bags, backpacks, wallets and much more! Unisex and 100% cruelty free.",
+    "image": "c-Accessories.jpg"
+  }
+]
