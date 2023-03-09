@@ -15,7 +15,9 @@ p {
   font-weight: 400;
   margin: 0;
 }
-
+main {
+  min-height: 50vh;
+}
 /* RESET STYLES */
 ul {
   list-style: none;

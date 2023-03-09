@@ -27,10 +27,11 @@ router.route("/:cartId").post(createCashOrderValidator, createCashOrder);
 
 router.route("/").get(filterUserOrders, getAllOrders);
 
+router.route("/:id").get(getOrderValidator, getSingleOrder);
+
 router.use(allowedTo(USER_ROLES.ADMIN));
 router
   .route("/:id")
-  .get(getOrderValidator, getSingleOrder)
   .patch(updateSingleOrder)
   .delete(deleteOrderValidator, deleteSingleOrder);
 

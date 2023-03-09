@@ -1,4 +1,4 @@
-import {Suspense, useEffect} from "react";
+import {Suspense} from "react";
 import {HelmetProvider} from "react-helmet-async";
 import {Toaster} from "react-hot-toast";
 import Footer from "./layout/Footer";
@@ -6,21 +6,11 @@ import Header from "./layout/Header";
 import AppRoutes from "./routes";
 import FullBackLoader from "./common/components/Loaders/FullBackLoader";
 
-import {useDispatch, useSelector} from "react-redux";
-import {getUserProfile} from "./features/user/userServices";
+import useUserProfile from "./common/hooks/user/useUserProfile";
 
 function App() {
-  const dispatch = useDispatch();
-  const {isLoggedIn, userProfile} = useSelector((state) => state.user);
-  useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(getUserProfile());
-    }
-  }, [isLoggedIn, dispatch]);
-
-  if (userProfile.loading) {
-    return <FullBackLoader />;
-  }
+  const {userProfile} = useUserProfile();
+  // console.log(userProfile);
 
   return (
     <HelmetProvider>

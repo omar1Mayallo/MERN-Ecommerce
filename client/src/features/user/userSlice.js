@@ -1,6 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 import pushNotification from "../../common/components/Shared/Notification";
-import {register, login, getUserProfile} from "./userServices";
+import {
+  register,
+  login,
+  getUserProfile,
+  updateUserProfile,
+  updateUserPassword,
+} from "./userServices";
 
 const initialState = {
   isMutation: {success: false},
@@ -69,6 +75,28 @@ export const userSlice = createSlice({
       .addCase(getUserProfile.rejected, (state, action) => {
         state.userProfile.loading = false;
         state.userProfile.error = action.payload;
+      })
+      //_____________________UPDATE_USER_PROFILE____________________//
+      .addCase(updateUserProfile.pending, (state) => {
+        state.isMutation.loading = true;
+      })
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        state.isMutation.loading = false;
+        state.isMutation.success = action.payload.status === 200 && true;
+      })
+      .addCase(updateUserProfile.rejected, (state, action) => {
+        state.isMutation.loading = false;
+      })
+      //_____________________UPDATE_USER_PASSWORD____________________//
+      .addCase(updateUserPassword.pending, (state) => {
+        state.isMutation.loading = true;
+      })
+      .addCase(updateUserPassword.fulfilled, (state, action) => {
+        state.isMutation.loading = false;
+        state.isMutation.success = action.payload.status === 200 && true;
+      })
+      .addCase(updateUserPassword.rejected, (state, action) => {
+        state.isMutation.loading = false;
       });
   },
 });

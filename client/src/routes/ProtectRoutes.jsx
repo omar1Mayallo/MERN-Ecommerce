@@ -6,7 +6,8 @@ const ProtectRoutes = ({isAdmin, children}) => {
   const {isLoggedIn, userProfile} = useSelector((state) => state.user);
 
   if (!isLoggedIn) {
-    return <Navigate to="/login" replace />;
+    window.location.href = "/login";
+    return;
   }
 
   if (userProfile.loading === false) {

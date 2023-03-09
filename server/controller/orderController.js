@@ -71,7 +71,10 @@ export const getAllOrders = getAll(Order);
 // @desc    GET Single Order
 // @route   GET /api/orders/:id
 // @access  Private("ADMIN")
-export const getSingleOrder = getOne(Order);
+export const getSingleOrder = getOne(Order, {
+  path: "cartItems.product",
+  select: "name image",
+});
 
 // @desc    UPDATE Single Order
 // @route   PATCH /api/orders/:id
