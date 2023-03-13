@@ -32,7 +32,7 @@ const Header = () => {
         <div className="navbar py-2">
           {/* Logo */}
           <LinkContainer style={{cursor: "pointer"}} to={"/"}>
-            <img src={logo} alt="Logo" width={190} height={55} />
+            <img src={logo} alt="Logo" width={50} height={50} />
           </LinkContainer>
 
           {/* Navbar */}
@@ -82,7 +82,9 @@ const Header = () => {
                         {userProfile.user?.role === "admin" && (
                           <>
                             <DropdownItem divider />
-                            <DropdownItem onClick={() => navigate("/admin")}>
+                            <DropdownItem
+                              onClick={() => navigate("/admin/products")}
+                            >
                               Dashboard
                             </DropdownItem>
                           </>

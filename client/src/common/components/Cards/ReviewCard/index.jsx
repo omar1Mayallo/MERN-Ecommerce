@@ -13,6 +13,7 @@ import {
   ModalHeader,
   UncontrolledDropdown,
   Form,
+  Spinner,
 } from "reactstrap";
 import RatingStars from "../../Shared/RatingStars";
 import {
@@ -28,6 +29,8 @@ import ReactStars from "react-rating-stars-component";
 
 const ReviewCard = ({rev}) => {
   const {userProfile} = useSelector((state) => state.user);
+  const {isMutation} = useSelector((state) => state.reviews);
+
   const {
     reviewText,
     reviewRating,
@@ -40,7 +43,7 @@ const ReviewCard = ({rev}) => {
     toggleUpdateReviewModal,
     handleSubmitUpdateReview,
   } = UseMutateReviews();
-  console.log(userProfile);
+  // console.log(userProfile);
   return (
     <div className="d-flex p-2 rounded mb-2">
       {/* user_image */}
@@ -108,15 +111,24 @@ const ReviewCard = ({rev}) => {
           </ModalHeader>
           <ModalBody>Are You Sure To Delete Your Review ?</ModalBody>
           <ModalFooter>
-            <Button
-              color="primary"
-              onClick={() => {
-                handleDeleteReview(rev._id);
-                toggleDeleteReviewModal();
-              }}
-            >
-              Delete
-            </Button>{" "}
+            {isMutation.loading ? (
+              <Button color="primary" disabled>
+                <Spinner size={"sm"} />
+              </Button>
+            ) : (
+              <Button
+                color="primary"
+                onClick={() => {
+                  handleDeleteReview(rev._id);
+                  if (isMutation.loading === "false") {
+                    toggleDeleteReviewModal();
+                  }
+                }}
+              >
+                Delete
+              </Button>
+            )}
+
             <Button color="secondary" onClick={toggleDeleteReviewModal}>
               Cancel
             </Button>
@@ -156,15 +168,24 @@ const ReviewCard = ({rev}) => {
             </Form>
           </ModalBody>
           <ModalFooter>
-            <Button
-              color="primary"
-              onClick={() => {
-                handleSubmitUpdateReview(rev._id);
-                toggleUpdateReviewModal();
-              }}
-            >
-              Update
-            </Button>
+            {isMutation.loading ? (
+              <Button color="primary" disabled>
+                <Spinner size={"sm"} />
+              </Button>
+            ) : (
+              <Button
+                color="primary"
+                onClick={() => {
+                  handleSubmitUpdateReview(rev._id);
+                  if (isMutation.loading === "false") {
+                    toggleUpdateReviewModal();
+                  }
+                }}
+              >
+                Update
+              </Button>
+            )}
+
             <Button color="secondary" onClick={toggleUpdateReviewModal}>
               Cancel
             </Button>

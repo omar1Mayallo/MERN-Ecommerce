@@ -4,6 +4,9 @@ import {
   createCardOrder,
   getAllOrders,
   getOrderDetails,
+  updateOrderToPaid,
+  updateOrderToDelivered,
+  deleteOrder,
 } from "./ordersServices";
 
 const initialState = {
@@ -78,6 +81,39 @@ export const ordersSlice = createSlice({
       .addCase(getAllOrders.rejected, (state, action) => {
         state.allOrders.loading = false;
         state.allOrders.error = action.payload;
+      })
+      //_____________________UPDATE_ORDER_TO_PAID____________________//
+      .addCase(updateOrderToPaid.pending, (state) => {
+        state.isMutation.loading = true;
+      })
+      .addCase(updateOrderToPaid.fulfilled, (state, action) => {
+        state.isMutation.loading = false;
+        state.isMutation.success = action.payload.status === 200 && true;
+      })
+      .addCase(updateOrderToPaid.rejected, (state, action) => {
+        state.isMutation.loading = false;
+      })
+      //_____________________UPDATE_ORDER_TO_DELIVERED____________________//
+      .addCase(updateOrderToDelivered.pending, (state) => {
+        state.isMutation.loading = true;
+      })
+      .addCase(updateOrderToDelivered.fulfilled, (state, action) => {
+        state.isMutation.loading = false;
+        state.isMutation.success = action.payload.status === 200 && true;
+      })
+      .addCase(updateOrderToDelivered.rejected, (state, action) => {
+        state.isMutation.loading = false;
+      })
+      //_____________________DELETE_ORDER____________________//
+      .addCase(deleteOrder.pending, (state) => {
+        state.isMutation.loading = true;
+      })
+      .addCase(deleteOrder.fulfilled, (state, action) => {
+        state.isMutation.loading = false;
+        state.isMutation.success = action.payload.status === 204 && true;
+      })
+      .addCase(deleteOrder.rejected, (state, action) => {
+        state.isMutation.loading = false;
       });
   },
 });

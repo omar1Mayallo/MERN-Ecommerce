@@ -9,6 +9,7 @@ import couponsSlice from "../features/coupons/couponsSlice";
 import ordersSlice from "../features/orders/ordersSlice";
 import bannersSlice from "../features/banners/bannersSlice";
 import reviewsSlice from "../features/reviews/reviewsSlice";
+import subcategoriesSlice from "../features/subcategories/subcategoriesSlice";
 
 const rootReducer = combineReducers({
   products: productsSlice,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   orders: ordersSlice,
   address: addressSlice,
   reviews: reviewsSlice,
+  subcategories: subcategoriesSlice,
 });
 
 export default rootReducer;

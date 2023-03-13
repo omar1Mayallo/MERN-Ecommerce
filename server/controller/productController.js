@@ -19,7 +19,7 @@ export const uploadProductImages = uploadMixOfImages([
 
 // 2) PROCESSING(Sharp)
 export const resizeProductImages = asyncHandler(async (req, res, next) => {
-  if (!req.file) return next();
+  if (!req.files) return next();
   // a) image field
   if (req.files.image) {
     const mainImageFilename = `product-${req.user._id}-${Date.now()}-main.jpeg`;

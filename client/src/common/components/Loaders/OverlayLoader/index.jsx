@@ -1,10 +1,10 @@
 import React from "react";
 import {FadeLoader} from "react-spinners";
 import {OverlayLoaderStyled} from "./styles";
-const OverlayLoader = () => {
+const OverlayLoader = ({active}) => {
   return (
-    <OverlayLoaderStyled>
-      <FadeLoader color="#eeeeee" />
+    <OverlayLoaderStyled active={active}>
+      <FadeLoader color="#f3f3f3" />
     </OverlayLoaderStyled>
   );
 };

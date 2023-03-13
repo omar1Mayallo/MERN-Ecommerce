@@ -4,16 +4,16 @@ import {Alert, Badge, Table} from "reactstrap";
 import BlockLoader from "../../../common/components/Loaders/BlockLoader";
 import OverlayLoader from "../../../common/components/Loaders/OverlayLoader";
 import PageHelmet from "../../../common/components/Shared/PageHelmet";
-import useAllOrders from "../../../common/hooks/orders/useAllOrders";
+import useGetOrders from "../../../common/hooks/orders/useGetOrders";
 import SideBarLayout from "../../../layout/SideBarLayout";
 
 const Orders = () => {
-  const {allOrders, isMutation} = useAllOrders();
+  const {allOrders, isMutation} = useGetOrders();
 
   return (
     <>
       <PageHelmet title={"Orders"} />
-      {isMutation?.loading && <OverlayLoader />}
+      <OverlayLoader active={isMutation?.loading} />
       <SideBarLayout>
         <section className="wishlist-section">
           <h4 className="mb-4">Orders</h4>

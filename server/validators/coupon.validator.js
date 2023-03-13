@@ -38,10 +38,7 @@ export const createCouponValidator = [
 ];
 export const updateCouponValidator = [
   check("id").isMongoId().withMessage("Invalid id format"),
-  check("name")
-    .optional()
-    .trim()
-    .custom((val) => isUnique(val, Coupon, "name")),
+  check("name").optional().trim(),
   check("product")
     .optional()
     .isMongoId()

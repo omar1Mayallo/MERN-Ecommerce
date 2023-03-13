@@ -17,8 +17,9 @@ export const isExistInDB = async (val, Model) => {
 };
 
 //__CHECK_(By Val)_DISCOUNT < PRICE__//
-export const isLower = (discountVal, req) => {
-  if (discountVal >= req.body.price) {
+export const isLower = (val, req) => {
+  // console.log(val * 1 >= req.body.price * 1);
+  if (val * 1 >= req.body.price * 1) {
     throw new Error(
       `discount (${val}) must be lower than the original price (${req.body.price})`
     );

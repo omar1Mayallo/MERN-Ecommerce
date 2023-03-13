@@ -2,14 +2,15 @@
 import {useState, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {getAllProducts} from "../../../features/products/productsServices";
+import {resetMutationResult} from "../../../features/products/productsSlice";
 
-const useGetAllProducts = () => {
+const useGetProducts = (limit = 8) => {
   const dispatch = useDispatch();
-  const {allProducts} = useSelector((state) => state.products);
+  const {allProducts, isMutation} = useSelector((state) => state.products);
   // console.log(allProducts);
 
   // LIMIT
-  let limit = 8;
+  // let limit = 8;
 
   // SORT
   const [sortQueryParams, setSortQueryParams] = useState("");
@@ -81,11 +82,20 @@ const useGetAllProducts = () => {
     } else {
       setCategoryQueryParams("");
     }
-    dispatch(
-      getAllProducts(
-        `${sortQueryParams}&limit=${limit}${pageQueryParams}${ratingQueryParams}${priceQueryParams}${searchQueryParams}${categoryQueryParams}`
-      )
-    );
+    if (isMutation.success) {
+      dispatch(
+        getAllProducts(
+          `${sortQueryParams}&limit=${limit}${pageQueryParams}${ratingQueryParams}${priceQueryParams}${searchQueryParams}${categoryQueryParams}`
+        )
+      );
+      dispatch(resetMutationResult());
+    } else {
+      dispatch(
+        getAllProducts(
+          `${sortQueryParams}&limit=${limit}${pageQueryParams}${ratingQueryParams}${priceQueryParams}${searchQueryParams}${categoryQueryParams}`
+        )
+      );
+    }
   }, [
     dispatch,
     limit,
@@ -96,6 +106,7 @@ const useGetAllProducts = () => {
     categoryQueryParams,
     checkedCategories,
     pageQueryParams,
+    isMutation.success,
   ]);
 
   return {
@@ -107,7 +118,8 @@ const useGetAllProducts = () => {
     handleCategory,
     handlePagination,
     limit,
+    isMutation,
   };
 };
 
-export default useGetAllProducts;
+export default useGetProducts;

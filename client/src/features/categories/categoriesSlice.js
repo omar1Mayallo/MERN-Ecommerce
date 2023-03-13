@@ -1,5 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getAllCategories, getCategoryDetails} from "./categoriesServices";
+import {
+  getAllCategories,
+  getCategoryDetails,
+  createCategory,
+  updateCategory,
+  deleteCategory,
+} from "./categoriesServices";
+
 const initialState = {
   isMutation: {success: false},
   allCategories: {categories: []},
@@ -44,6 +51,40 @@ export const categoriesSlice = createSlice({
       .addCase(getCategoryDetails.rejected, (state, action) => {
         state.categoryDetails.loading = false;
         state.categoryDetails.error = action.payload;
+      })
+
+      //_____________________CREATE_CATEGORY____________________//
+      .addCase(createCategory.pending, (state) => {
+        state.isMutation.loading = true;
+      })
+      .addCase(createCategory.fulfilled, (state, action) => {
+        state.isMutation.loading = false;
+        state.isMutation.success = action.payload.status === 201 && true;
+      })
+      .addCase(createCategory.rejected, (state, action) => {
+        state.isMutation.loading = false;
+      })
+      //_____________________UPDATE_CATEGORY____________________//
+      .addCase(updateCategory.pending, (state) => {
+        state.isMutation.loading = true;
+      })
+      .addCase(updateCategory.fulfilled, (state, action) => {
+        state.isMutation.loading = false;
+        state.isMutation.success = action.payload.status === 200 && true;
+      })
+      .addCase(updateCategory.rejected, (state, action) => {
+        state.isMutation.loading = false;
+      })
+      //_____________________DELETE_CATEGORY____________________//
+      .addCase(deleteCategory.pending, (state) => {
+        state.isMutation.loading = true;
+      })
+      .addCase(deleteCategory.fulfilled, (state, action) => {
+        state.isMutation.loading = false;
+        state.isMutation.success = action.payload.status === 204 && true;
+      })
+      .addCase(deleteCategory.rejected, (state, action) => {
+        state.isMutation.loading = false;
       });
   },
 });

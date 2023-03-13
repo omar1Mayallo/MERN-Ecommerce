@@ -9,8 +9,9 @@ import FullBackLoader from "./common/components/Loaders/FullBackLoader";
 import useUserProfile from "./common/hooks/user/useUserProfile";
 
 function App() {
-  const {userProfile} = useUserProfile();
+  // const {userProfile} = useUserProfile();
   // console.log(userProfile);
+  useUserProfile();
 
   return (
     <HelmetProvider>

@@ -24,6 +24,15 @@ ul {
   padding-left: 0;
   margin: 0;
 }
+.carousel-root ul.control-dots {
+  background: rgba(0, 0, 0, 0.25);
+  margin-bottom: 0;
+}
+.multiple-select-text-input {
+  padding: 0.5em 1em;
+  border: 2px solid gray;
+}
+
 /* ICONS */
 svg {
   cursor: pointer;

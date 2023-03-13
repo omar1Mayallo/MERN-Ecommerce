@@ -7,6 +7,9 @@ import {
   getProductDetails,
   getCategoryProducts,
   getAllProducts,
+  createProduct,
+  updateProduct,
+  deleteProduct,
 } from "./productsServices";
 
 const initialState = {
@@ -125,6 +128,39 @@ export const productsSlice = createSlice({
       .addCase(getCategoryProducts.rejected, (state, action) => {
         state.categoryProducts.loading = false;
         state.categoryProducts.error = action.payload;
+      })
+      //_____________________CREATE_PRODUCT______________________//
+      .addCase(createProduct.pending, (state) => {
+        state.isMutation.loading = true;
+      })
+      .addCase(createProduct.fulfilled, (state, action) => {
+        state.isMutation.loading = false;
+        state.isMutation.success = action.payload.status === 201 && true;
+      })
+      .addCase(createProduct.rejected, (state, action) => {
+        state.isMutation.loading = false;
+      })
+      //_____________________UPDATE_PRODUCT______________________//
+      .addCase(updateProduct.pending, (state) => {
+        state.isMutation.loading = true;
+      })
+      .addCase(updateProduct.fulfilled, (state, action) => {
+        state.isMutation.loading = false;
+        state.isMutation.success = action.payload.status === 200 && true;
+      })
+      .addCase(updateProduct.rejected, (state, action) => {
+        state.isMutation.loading = false;
+      })
+      //_____________________DELETE_PRODUCT______________________//
+      .addCase(deleteProduct.pending, (state) => {
+        state.isMutation.loading = true;
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        state.isMutation.loading = false;
+        state.isMutation.success = action.payload.status === 204 && true;
+      })
+      .addCase(deleteProduct.rejected, (state, action) => {
+        state.isMutation.loading = false;
       });
   },
 });

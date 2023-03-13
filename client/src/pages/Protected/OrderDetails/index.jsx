@@ -117,7 +117,7 @@ const OrderDetails = () => {
                     </Alert>
                   ) : (
                     <Alert className="mb-0 p-1 text-center" color="danger">
-                      NOT PAID
+                      UNPAID
                     </Alert>
                   )}
                   {orderDetails?.order?.isDelivered ? (
@@ -126,7 +126,7 @@ const OrderDetails = () => {
                     </Alert>
                   ) : (
                     <Alert className="mb-0 p-1 text-center" color="danger">
-                      NOT DELIVERED
+                      IN-PROGRESS
                     </Alert>
                   )}
                 </div>

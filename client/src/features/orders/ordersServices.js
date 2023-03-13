@@ -65,9 +65,11 @@ export const createCardOrder = createAsyncThunk(
 //____________________GET_ALL_ORDERS____________________//
 export const getAllOrders = createAsyncThunk(
   "orders/getAllOrders",
-  async (_, {rejectWithValue}) => {
+  async ({limit, page}, {rejectWithValue}) => {
     try {
-      const res = await useGetDataProtected("/orders");
+      const res = await useGetDataProtected(
+        `/orders${limit ? `?limit=${limit}` : ""}${page ? `&page=${page}` : ""}`
+      );
       return res;
     } catch (error) {
       // console.log(error);
@@ -98,6 +100,93 @@ export const getOrderDetails = createAsyncThunk(
         (error.response && error.response.data && error.response.data.errors) ||
         error.message;
       // console.log(message);
+      return rejectWithValue(message);
+    }
+  }
+);
+//_____________________UPDATE_ORDER_TO_PAID____________________//
+export const updateOrderToPaid = createAsyncThunk(
+  "orders/updateOrderToPaid",
+  async (orderId, {rejectWithValue}) => {
+    try {
+      const res = await useUpdateData(`/orders/${orderId}/is-paid`);
+      pushNotification("Order Status Updated To Paid", "success");
+      // console.log(res);
+      return res;
+    } catch (error) {
+      // console.log("ERROR" + error);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        (error.response && error.response.data && error.response.data.errors) ||
+        error.message;
+      // console.log(message);
+      if (typeof message === "string") {
+        pushNotification(message, "error");
+      } else {
+        message.forEach((el) => {
+          pushNotification(el.msg, "error");
+        });
+      }
+      return rejectWithValue(message);
+    }
+  }
+);
+//_____________________UPDATE_ORDER_TO_DELIVERED____________________//
+export const updateOrderToDelivered = createAsyncThunk(
+  "orders/updateOrderToDelivered",
+  async (orderId, {rejectWithValue}) => {
+    try {
+      const res = await useUpdateData(`/orders/${orderId}/is-delivered`);
+      pushNotification("Order Status Updated To Delivered ", "success");
+      // console.log(res);
+      return res;
+    } catch (error) {
+      // console.log("ERROR" + error);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        (error.response && error.response.data && error.response.data.errors) ||
+        error.message;
+      // console.log(message);
+      if (typeof message === "string") {
+        pushNotification(message, "error");
+      } else {
+        message.forEach((el) => {
+          pushNotification(el.msg, "error");
+        });
+      }
+      return rejectWithValue(message);
+    }
+  }
+);
+//_____________________DELETE_ORDER____________________//
+export const deleteOrder = createAsyncThunk(
+  "orders/deleteOrder",
+  async (orderId, {rejectWithValue}) => {
+    try {
+      const res = await useDeleteData(`/orders/${orderId}`);
+      pushNotification("Order Deleted Successfully", "success");
+      // console.log(res);
+      return res;
+    } catch (error) {
+      // console.log("ERROR" + error);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        (error.response && error.response.data && error.response.data.errors) ||
+        error.message;
+      // console.log(message);
+      if (typeof message === "string") {
+        pushNotification(message, "error");
+      } else {
+        message.forEach((el) => {
+          pushNotification(el.msg, "error");
+        });
+      }
       return rejectWithValue(message);
     }
   }

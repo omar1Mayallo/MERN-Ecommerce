@@ -7,6 +7,7 @@ import {FiLogOut} from "react-icons/fi";
 import SidebarLink from "../../common/components/Shared/SidebarLink";
 import {useDispatch} from "react-redux";
 import {logout} from "../../features/user/userSlice";
+import Sidebar from "../../common/components/Shared/Sidebar";
 
 const SideBarLayout = ({children}) => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const SideBarLayout = ({children}) => {
     <Container className="py-4">
       <Row className="position-relative">
         <Col lg={1} md={2} xs={2}>
-          <aside className="bg-light rounded d-flex flex-column gap-2 p-2 position-sticky top-0 start-0">
+          <Sidebar>
             <SidebarLink
               Icon={CgProfile}
               name={"Profile"}
@@ -31,7 +32,7 @@ const SideBarLayout = ({children}) => {
               name={"Logout"}
               handleClick={() => dispatch(logout())}
             />
-          </aside>
+          </Sidebar>
         </Col>
         <Col lg={11} md={10} xs={10} className="bg-light p-3 rounded">
           {children}

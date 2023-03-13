@@ -25,7 +25,7 @@ const Users = lazy(() => import("../pages/Private/Users"));
 const Products = lazy(() => import("../pages/Private/Products"));
 const Banners = lazy(() => import("../pages/Private/Banners"));
 const AdminCategories = lazy(() => import("../pages/Private/Categories"));
-const Dashboard = lazy(() => import("../pages/Private/Dashboard"));
+
 const Orders = lazy(() => import("../pages/Private/Orders"));
 const Coupons = lazy(() => import("../pages/Private/Coupons"));
 
@@ -66,9 +66,8 @@ const AppRoutes = () => {
 
         {/* ADMIN_ROUTES */}
         <Route path={"admin"} element={<ProtectRoutes isAdmin={true} />}>
-          <Route index element={<Dashboard />} />
+          <Route index path="products" element={<Products />} />
           <Route path="users" element={<Users />} />
-          <Route path="products" element={<Products />} />
           <Route path="banners" element={<Banners />} />
           <Route path="categories" element={<AdminCategories />} />
           <Route path="coupons" element={<Coupons />} />

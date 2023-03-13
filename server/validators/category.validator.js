@@ -33,8 +33,7 @@ export const updateCategoryValidator = [
     .isLength({min: 3})
     .withMessage("Category name minimum length 3 characters")
     .isLength({max: 30})
-    .withMessage("Category name maximum length 30 characters")
-    .custom((val) => isUnique(val, Category, "name")),
+    .withMessage("Category name maximum length 30 characters"),
   check("image").optional(),
   check("description")
     .optional()

@@ -16,7 +16,7 @@ const Categories = () => {
             {page: "Categories", isActive: true},
           ]}
         />
-        <CategoriesSection />
+        <CategoriesSection withSlice={false} />
       </Container>
     </>
   );

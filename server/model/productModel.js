@@ -26,15 +26,9 @@ const productSchema = new mongoose.Schema(
       required: [true, "Product must have a price"],
       max: [1000000, "Product price is very high"],
     },
-    //only work in create ,save not update
     discount: {
       type: Number,
-      validate: {
-        validator: function (val) {
-          return val < this.price;
-        },
-        message: "Discount must be lower than price",
-      },
+      default: 0,
     },
     sold: {
       type: Number,

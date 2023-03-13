@@ -28,7 +28,7 @@ const CartItemsSection = () => {
 
   return (
     <>
-      {isMutation?.loading && <OverlayLoader />}
+      <OverlayLoader active={isMutation?.loading} />
       <section className="cart-items-section">
         {userCart.loading || userCart.cart?.cartItems?.length > 0 ? (
           <>

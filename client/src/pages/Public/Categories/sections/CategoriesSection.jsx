@@ -5,9 +5,11 @@ import BlockLoader from "../../../../common/components/Loaders/BlockLoader";
 import ImageLoader from "../../../../common/components/Loaders/ImgLoader";
 import useGetCategories from "../../../../common/hooks/categories/useGetCategories";
 
-const CategoriesSection = () => {
+const CategoriesSection = ({withSlice}) => {
   const {allCategories} = useGetCategories();
-
+  const categories = withSlice
+    ? allCategories?.categories?.slice(0, 4)
+    : allCategories?.categories;
   return (
     <section className="categories-section">
       {allCategories?.loading ? (
@@ -17,8 +19,8 @@ const CategoriesSection = () => {
       ) : (
         <>
           <Row md={4} xs={2}>
-            {allCategories?.categories?.slice(0, 4).map((item, idx) => (
-              <Col key={idx} className="mb-3">
+            {categories.map((item, idx) => (
+              <Col key={idx} className="mb-4">
                 <Link to={`/categories/${item._id}`}>
                   <ImageLoader
                     image={item?.image}

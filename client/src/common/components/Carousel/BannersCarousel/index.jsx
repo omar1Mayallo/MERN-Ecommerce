@@ -3,7 +3,7 @@ import {Carousel} from "react-responsive-carousel";
 import {Alert} from "reactstrap";
 import useGetBanners from "../../../hooks/banners/useGetBanners";
 import BlockLoader from "../../Loaders/BlockLoader";
-import ImageLoader from "../../Loaders/ImgLoader";
+
 const BannersCarousel = () => {
   const {allBanners} = useGetBanners();
 
@@ -26,9 +26,14 @@ const BannersCarousel = () => {
           >
             {allBanners?.banners?.map((item, idx) => (
               <div key={idx}>
-                <ImageLoader
-                  image={item?.image}
-                  style={{width: "100%", height: "100%"}}
+                <img
+                  src={item?.image}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    // objectFit: "cover",
+                  }}
+                  alt={"banner-img"}
                 />
               </div>
             ))}

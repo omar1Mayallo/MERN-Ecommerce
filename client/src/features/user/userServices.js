@@ -7,6 +7,7 @@ import {
   useUpdateDataWithImg,
 } from "../../common/hooks/api/useUpdateData";
 import {logout} from "./userSlice";
+import {useDeleteData} from "../../common/hooks/api/useDeleteData";
 
 //_____________________REGISTER____________________//
 export const register = createAsyncThunk(
@@ -128,6 +129,88 @@ export const updateUserPassword = createAsyncThunk(
         }, 2000);
       }
 
+      return res;
+    } catch (error) {
+      // console.log("ERROR" + error);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        (error.response && error.response.data && error.response.data.errors) ||
+        error.message;
+      // console.log(message);
+      if (typeof message === "string") {
+        pushNotification(message, "error");
+      } else {
+        message.forEach((el) => {
+          pushNotification(el.msg, "error");
+        });
+      }
+      return rejectWithValue(message);
+    }
+  }
+);
+//_____________________GET_ALL_USERS____________________//
+export const getAllUsers = createAsyncThunk(
+  "user/getAllUsers",
+  async ({limit, page}, {rejectWithValue}) => {
+    try {
+      const res = await useGetDataProtected(
+        `/users${limit ? `?limit=${limit}` : ""}${
+          page ? `&page=${page}` : ""
+        }&sort=role`
+      );
+      return res;
+    } catch (error) {
+      // console.log(error);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        (error.response && error.response.data && error.response.data.errors) ||
+        error.message;
+      // console.log(message);
+      return rejectWithValue(message);
+    }
+  }
+);
+//_____________________UPDATE_USER_ROLE____________________//
+export const updateUserRole = createAsyncThunk(
+  "user/updateUserRole",
+  async ({userId, role}, {rejectWithValue}) => {
+    try {
+      const res = await useUpdateData(`/users/${userId}`, {role});
+      pushNotification("User Role Updated Successfully", "success");
+      // console.log(res);
+      return res;
+    } catch (error) {
+      // console.log("ERROR" + error);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        (error.response && error.response.data && error.response.data.errors) ||
+        error.message;
+      // console.log(message);
+      if (typeof message === "string") {
+        pushNotification(message, "error");
+      } else {
+        message.forEach((el) => {
+          pushNotification(el.msg, "error");
+        });
+      }
+      return rejectWithValue(message);
+    }
+  }
+);
+//_____________________DELETE_USER____________________//
+export const deleteUser = createAsyncThunk(
+  "user/deleteUser",
+  async (userId, {rejectWithValue}) => {
+    try {
+      const res = await useDeleteData(`/users/${userId}`);
+      pushNotification("User Deleted Successfully", "success");
+      // console.log(res);
       return res;
     } catch (error) {
       // console.log("ERROR" + error);

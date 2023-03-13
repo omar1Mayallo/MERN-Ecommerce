@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getAllBanners} from "./bannersServices";
+import {getAllBanners, createBanner, deleteBanner} from "./bannersServices";
 
 const initialState = {allBanners: {banners: []}, isMutation: {success: false}};
 
@@ -28,6 +28,28 @@ export const bannersSlice = createSlice({
       .addCase(getAllBanners.rejected, (state, action) => {
         state.allBanners.loading = false;
         state.allBanners.error = action.payload;
+      })
+      //_____________________CREATE_BANNER____________________//
+      .addCase(createBanner.pending, (state) => {
+        state.isMutation.loading = true;
+      })
+      .addCase(createBanner.fulfilled, (state, action) => {
+        state.isMutation.loading = false;
+        state.isMutation.success = action.payload.status === 201 && true;
+      })
+      .addCase(createBanner.rejected, (state, action) => {
+        state.isMutation.loading = false;
+      })
+      //_____________________DELETE_BANNER____________________//
+      .addCase(deleteBanner.pending, (state) => {
+        state.isMutation.loading = true;
+      })
+      .addCase(deleteBanner.fulfilled, (state, action) => {
+        state.isMutation.loading = false;
+        state.isMutation.success = action.payload.status === 204 && true;
+      })
+      .addCase(deleteBanner.rejected, (state, action) => {
+        state.isMutation.loading = false;
       });
   },
 });

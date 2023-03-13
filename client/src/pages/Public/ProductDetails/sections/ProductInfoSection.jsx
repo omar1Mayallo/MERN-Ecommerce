@@ -130,12 +130,12 @@ const ProductInfoSection = () => {
                     <span>
                       CATEGORY -{" "}
                       <Badge color="info" className="p-1 rounded">
-                        {productDetails?.product?.category.name}
+                        {productDetails?.product?.category?.name}
                       </Badge>
                     </span>
 
                     {productDetails?.product &&
-                      productDetails?.product?.subcategories.length > 0 && (
+                      productDetails?.product?.subcategories?.length > 0 && (
                         <span className="mt-2">
                           SUBCATEGORIES -{" "}
                           {productDetails?.product?.subcategories.map(
@@ -315,7 +315,7 @@ const ProductInfoSection = () => {
 
           {/* PRODUCTS_IN_SAME_CATEGORY */}
           <ProductsInSameCategorySection
-            categoryId={productDetails?.product?.category._id}
+            categoryId={productDetails?.product?.category?._id}
           />
         </>
       )}

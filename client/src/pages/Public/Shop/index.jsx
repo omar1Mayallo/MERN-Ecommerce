@@ -3,7 +3,7 @@ import {Col, Container, Row} from "reactstrap";
 import OverlayLoader from "../../../common/components/Loaders/OverlayLoader";
 import PageBreadcrumbs from "../../../common/components/Shared/PageBreadcrumbs";
 import PageHelmet from "../../../common/components/Shared/PageHelmet";
-import useGetAllProducts from "../../../common/hooks/products/useGetAllProducts";
+import useGetProducts from "../../../common/hooks/products/useGetProducts";
 import ShopProductsContainer from "./sections/ShopProductsContainer";
 import ShopSideBar from "./sections/ShopSideBar";
 import ShopSortBar from "./sections/ShopSortBar";
@@ -18,7 +18,7 @@ const Shop = () => {
     handleCategory,
     handlePagination,
     limit,
-  } = useGetAllProducts();
+  } = useGetProducts();
 
   return (
     <>
@@ -30,9 +30,7 @@ const Shop = () => {
             {page: "Shop", isActive: true},
           ]}
         />
-
-        {allProducts?.loading && <OverlayLoader />}
-
+        <OverlayLoader active={allProducts?.loading} />
         <ShopSortBar handleSort={handleSort} results={allProducts?.results} />
         <Row>
           <Col lg={3} md={4}>
