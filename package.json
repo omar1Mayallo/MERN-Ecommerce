@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "server": "nodemon server/server.js",
+    "server": "node server/server.js",
     "server:prod": "SET NODE_ENV=production& nodemon server/server.js",
     "client": "npm start --prefix client",
     "start:dev": "concurrently \"SET NODE_ENV=production& npm run server\" \"npm run client\"",
